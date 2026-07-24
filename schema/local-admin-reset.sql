@@ -1,0 +1,1 @@
+UPDATE users SET password = "$2b$10$v8AxAs2jW4ag7tdKhqGTn.j35S2/fwVjX6l37Gcs1HwMAZNdLiAcC" WHERE email = "admin@wyckoff.com";

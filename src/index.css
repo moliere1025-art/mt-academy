@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-active: #1d4ed8;
+
+  --color-danger: #ff3b30;
+  --color-success: #34c759;
+  --color-warning: #ff9f0a;
+
+  --color-app: var(--bg-app);
+  --color-surface: var(--bg-surface);
+  --color-surface-alt: var(--bg-surface-alt);
+  --color-outline: var(--border-outline);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-secondary: var(--ink-secondary);
+
+  /* Sidebar semantic tokens */
+  --color-sidebar: var(--sidebar-bg);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ink: var(--sidebar-ink);
+  --color-sidebar-ink-muted: var(--sidebar-ink-muted);
+
+  /* Nav semantic tokens */
+  --color-nav-bg: var(--nav-bg);
+  --color-nav-border: var(--nav-border);
+
+  /* Apple standard colors */
+  --color-apple-blue: #0071e3;
+  --color-apple-gray: #f5f5f7;
+
+  /* Radius — Apple spec */
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 980px;
+
+  /* Single subtle shadow — product imagery only */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+:root, .light {
+  --bg-app: #f4f7fb;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #eef3fa;
+
+  --ink: #0f172a;
+  --ink-muted: #64748b;
+  --ink-secondary: rgba(15, 23, 42, 0.48);
+
+  --border-outline: rgba(15, 23, 42, 0.08);
+
+  --primary: #3b82f6;
+
+  /* Sidebar */
+  --sidebar-bg: #ffffff;
+  --sidebar-hover: rgba(59, 130, 246, 0.06);
+  --sidebar-active: rgba(59, 130, 246, 0.10);
+  --sidebar-border: rgba(15, 23, 42, 0.06);
+  --sidebar-ink: #0f172a;
+  --sidebar-ink-muted: #64748b;
+
+  /* Nav */
+  --nav-bg: rgba(255, 255, 255, 0.86);
+  --nav-border: rgba(15, 23, 42, 0.06);
+}
+
+.dark {
+  --bg-app: #000000;
+  --bg-surface: #1c1c1e;
+  --bg-surface-alt: #2c2c2e;
+
+  --ink: #f5f5f7;
+  --ink-muted: rgba(255, 255, 255, 0.56);
+  --ink-secondary: rgba(255, 255, 255, 0.40);
+
+  --border-outline: rgba(255, 255, 255, 0.10);
+
+  --primary: #0a84ff;
+
+  /* Sidebar */
+  --sidebar-bg: #1c1c1e;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active: #2c2c2e;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ink: #f5f5f7;
+  --sidebar-ink-muted: rgba(255, 255, 255, 0.56);
+
+  /* Nav */
+  --nav-bg: rgba(28, 28, 30, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.08);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background-color: var(--bg-app);
+    color: var(--ink);
+  }
+  body {
+    @apply bg-app text-ink font-sans antialiased selection:bg-primary/20 selection:text-primary;
+    letter-spacing: -0.022em;
+  }
+
+  /* Typography Hierarchy — Apple Style */
+  h1 { @apply font-display text-[56px] font-[600] leading-[1.07] tracking-[-0.028em] text-ink; }
+  h2 { @apply font-display text-[40px] font-[600] leading-[1.10] tracking-[-0.021em] text-ink; }
+  h3 { @apply font-display text-[28px] font-[400] leading-[1.14] tracking-[0.007em] text-ink; }
+  h4 { @apply font-display text-[21px] font-[600] leading-[1.19] tracking-[0.011em] text-ink; }
+  h5 { @apply font-sans text-[17px] font-[600] leading-[1.24] tracking-[-0.022em] text-ink; }
+  h6 { @apply font-sans text-[14px] font-[600] leading-[1.29] tracking-[-0.016em] text-ink-muted; }
+
+  p { @apply text-[17px] font-[400] leading-[1.47] tracking-[-0.022em]; }
+
+  a { @apply text-primary font-medium transition-colors hover:underline; }
+}
+
+@layer components {
+  .apple-card {
+    @apply bg-surface rounded-[18px] border border-outline transition-all duration-500;
+  }
+
+  .btn-apple {
+    @apply px-[15px] py-[8px] rounded-md font-sans text-[17px] font-[400] transition-all duration-200 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .glass-nav {
+    @apply bg-[rgba(0,0,0,0.8)] backdrop-blur-[20px] saturate-[180%] text-white;
+  }
+
+  /* Admin Form Inputs */
+  .admin-input {
+    @apply w-full px-3 py-2.5 rounded-lg border border-outline bg-surface text-[15px] text-ink
+      placeholder:text-ink-muted/50
+      outline-none transition-all duration-200
+      focus:border-primary focus:ring-2 focus:ring-primary/10;
+  }
+
+  select.admin-input {
+    @apply appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-[right_12px_center] bg-no-repeat pr-10;
+  }
+
+  textarea.admin-input {
+    @apply leading-relaxed;
+  }
+
+  /* Student clean-education system — dense workbench, full main width */
+  .edu-page {
+    @apply min-h-[calc(100vh-4rem)] bg-app px-4 sm:px-5 lg:px-6 py-4 w-full;
+  }
+
+  .edu-shell {
+    @apply w-full max-w-none space-y-4;
+  }
+
+  .edu-card {
+    @apply bg-surface border border-outline rounded-[16px] shadow-[0_1px_2px_rgba(15,23,42,0.04)];
+  }
+
+  .edu-card-soft {
+    @apply bg-surface-alt/80 border border-outline rounded-[12px];
+  }
+
+  .edu-hero {
+    @apply relative overflow-hidden rounded-[16px] border border-outline bg-gradient-to-br from-[#eef5ff] via-white to-[#f8fafc];
+  }
+
+  .dark .edu-hero {
+    @apply from-[#0b1220] via-[#111827] to-[#0f172a];
+  }
+
+  .edu-kicker {
+    @apply text-[11px] font-semibold tracking-wide text-primary;
+  }
+
+  .edu-title {
+    @apply text-[22px] sm:text-[24px] font-display font-semibold tracking-tight text-ink;
+  }
+
+  .edu-subtitle {
+    @apply text-[13px] text-ink-muted leading-snug;
+  }
+
+  .edu-chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+  }
+
+  .edu-chip-blue {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-100 dark:bg-blue-500/10 dark:text-blue-300 dark:border-blue-500/20;
+  }
+
+  .edu-chip-green {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20;
+  }
+
+  .edu-chip-amber {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-100 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20;
+  }
+
+  .edu-chip-slate {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200 dark:bg-white/5 dark:text-white/70 dark:border-white/10;
+  }
+
+  .edu-stat {
+    @apply bg-surface border border-outline rounded-[14px] p-3.5 sm:p-4;
+  }
+
+  .edu-stat-label {
+    @apply text-[11px] font-medium text-ink-muted mb-1;
+  }
+
+  .edu-stat-value {
+    @apply text-[22px] sm:text-[24px] font-display font-semibold tracking-tight text-ink;
+  }
+
+  .edu-progress {
+    @apply h-1.5 w-full rounded-full bg-slate-100 overflow-hidden dark:bg-white/10;
+  }
+
+  .edu-progress > span {
+    @apply block h-full rounded-full bg-gradient-to-r from-blue-500 to-sky-400;
+  }
+
+  .edu-section-title {
+    @apply text-[15px] sm:text-[16px] font-display font-semibold tracking-tight text-ink;
+  }
+
+  .edu-empty {
+    @apply border border-dashed border-outline rounded-[12px] px-3 py-5 text-center text-[12px] text-ink-muted bg-surface-alt/40;
+  }
+
+  .edu-btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-primary text-white px-4 py-2 text-[13px] font-semibold hover:bg-primary-hover transition-all;
+  }
+
+  .edu-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full bg-white text-ink border border-outline px-4 py-2 text-[13px] font-semibold hover:bg-surface-alt transition-all dark:bg-surface;
+  }
+
+  .edu-row {
+    @apply flex items-center justify-between gap-3 rounded-[12px] border border-outline bg-surface px-3.5 py-2.5 hover:border-primary/20 hover:bg-blue-50/40 transition-all dark:hover:bg-white/5;
+  }
+
+  .edu-side-panel {
+    @apply bg-surface border border-outline rounded-[16px] shadow-[0_1px_2px_rgba(15,23,42,0.04)] p-4 space-y-3 h-fit;
+  }
+}
+
+/* Custom Scrollbar — Apple Style */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-black/20 rounded-full hover:bg-black/30 transition-colors;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/20 rounded-full hover:bg-white/30 transition-colors;
+}

@@ -1,0 +1,26 @@
+name = "mt-academy"
+compatibility_date = "2026-04-03"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
+
+# Secrets (JWT_SECRET) must NOT live here.
+# Local: put JWT_SECRET in .dev.vars
+# Production: wrangler pages secret put JWT_SECRET
+#
+# Optional non-secret vars can be set with [vars], e.g.:
+# ALLOWED_ORIGINS = "https://your-domain.com"
+# ALLOW_DEV_FALLBACK must never be "1" in production.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "MT STUDENTS"
+database_id = "61aaa294-fa1e-4ea4-ae9b-b9784aa4131d"
+
+[[r2_buckets]]
+binding = "COURSE_ASSETS"
+bucket_name = "wordstudio"
+
+[[kv_namespaces]]
+binding = "APP_CONFIG"
+id = "21ba568fa1aa4bb189ab7fc964649468"
+preview_id = "21ba568fa1aa4bb189ab7fc964649468"
